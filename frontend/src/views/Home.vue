@@ -40,7 +40,7 @@
             />
           </div>
           <div class="input-wrapper">
-            <label for="date">What date do suits you?</label>
+            <label for="date">What date suits you?</label>
             <Datepicker v-model="selectedDate" class="form-control" format="yyyy-MM-dd" />
           </div>
 
