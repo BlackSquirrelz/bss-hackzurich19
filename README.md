@@ -56,7 +56,7 @@ Our application was deployed on netlify (https://www.netlify.com/)
 
 * Peter Buchmann
 * Tobias Weisskopf
-*  
+* Deniel Horvatic
 
 ## License
 
