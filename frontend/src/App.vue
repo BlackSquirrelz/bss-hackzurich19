@@ -12,7 +12,7 @@
 export default {
   created() {
     // this.$store.dispatch("initAuth");
-    this.$store.dispatch("authenticateUser");
+    // this.$store.dispatch("authenticateUser");
   }
 };
 </script>
