@@ -1,24 +1,34 @@
 <template>
   <div class="home">
     <mdb-navbar dark>
-      <mdb-navbar-brand href>BBS</mdb-navbar-brand>
+      <mdb-navbar-brand>
+        <router-link to="/">
+          <img class="logo" :src="'./logo.png'" />
+        </router-link>
+      </mdb-navbar-brand>
       <mdb-navbar-toggler>
         <mdb-navbar-nav>
-          <mdb-nav-item href="#" active>Home</mdb-nav-item>
+          <router-link to="/" active>Home</router-link>
         </mdb-navbar-nav>
       </mdb-navbar-toggler>
     </mdb-navbar>
     <!-- SEARCH FORM -->
-    <mdb-view>
+    <mdb-view v-if="views.isSearchLocation">
       <img :src="'./flag.jpg'" class="img-fluid" alt="placeholder" />
-      <mdb-mask flex-center text="Your next Adventure is ready" />
+      <mdb-mask flex-center text="Your suprise adventure is ready" />
     </mdb-view>
     <section v-if="views.isSearchLocation">
-      <h1 class="text-left">Exciting</h1>
-      <h2 class="text-center">Mysterious</h2>
-      <h3 class="text-right">Experience</h3>
+      <h1 class="text-left">
+        <span class="red-text">S</span>uprising
+      </h1>
+      <h2 class="text-center">
+        <span class="red-text">B</span>reathtaking
+      </h2>
+      <h3 class="text-right">
+        <span class="red-text">B</span>orderless
+      </h3>
       <form @submit.prevent>
-        <div class="grey-text">
+        <div>
           <div class="form-group">
             <label for="example1">Where would you like to start?</label>
             <input
@@ -30,7 +40,7 @@
             />
           </div>
           <div class="input-wrapper">
-            <label for="date">What date do you like</label>
+            <label for="date">What date do suits you?</label>
             <Datepicker v-model="selectedDate" class="form-control" format="yyyy-MM-dd" />
           </div>
 
@@ -46,9 +56,14 @@
             />
           </div>
           <div class="input-wrapper">
-            <label for="Image">Do you prefer...</label>
+            <div for="Image" class="font-weight-bold">Do you prefer...</div>
             <div class="image-selection__wrapper">
               <div>
+                <div
+                  for="Image"
+                  style="paddingBottom: 5px;"
+                  :class="{selected: isNature}"
+                >...calming nature</div>
                 <img
                   :src="'./natur0.jpg'"
                   alt="avatar"
@@ -56,9 +71,8 @@
                   :class="{selected: isNature}"
                   @click="isNature = true"
                 />
-                <div for="Image" :class="{selected: isNature}">...calming Nature</div>
               </div>
-              <h3>...or...</h3>
+              <h5 class="font-weight-bold">...or...</h5>
               <div>
                 <img
                   :src="'./stadt0.jpg'"
@@ -67,7 +81,11 @@
                   :class="{selected: !isNature}"
                   @click="isNature = false"
                 />
-                <div for="Image" :class="{selected: !isNature}">...exciting Cities</div>
+                <div
+                  for="Image"
+                  style="paddingTop: 5px;"
+                  :class="{selected: !isNature}"
+                >...exciting cities?</div>
               </div>
             </div>
           </div>
@@ -132,7 +150,12 @@
         </mdb-container>
       </div>
     </section>
+    <mdb-view v-if="views.isSuccess">
+      <img :src="'./breath.gif'" class="img-fluid" alt="placeholder" />
+      <!-- <mdb-mask flex-center text="Your suprise adventure is ready" /> -->
+    </mdb-view>
     <section v-if="views.isSuccess">
+      <h1 style="paddingTop: 30px">Success 👏👏👏</h1>
       <img :src="'./success.png'" class="img-fluid" />
     </section>
 
@@ -288,6 +311,9 @@ export default {
         isSuccess: true
       };
     },
+    goToStartPage() {
+      window.reload();
+    },
     // async getToken() {
     //   const url =
     //     "https://sso-int.sbb.ch/auth/realms/SBB_Public/protocol/openid-connect/token";
@@ -361,11 +387,14 @@ export default {
 $primary: #eb0000
 $secondary: #666
 $secondary-light: #f6f6f6
-$font-secondary: #767676
+$font-secondary: #2c3e50
+$font-secondary-dark: #233240
 
 nav
   background: $primary
-  box-shadow: 0 3px 5px rgba(57, 63, 72, 0.3);
+
+nav::first-child()
+    box-shadow: 0 3px 5px rgba(57, 63, 72, 0.3);
 
 form 
   text-align: left
@@ -414,16 +443,20 @@ form img
 img.selected
   // border: solid 2px $primary
   // border-radius: 5px
-  box-shadow: 0px 0px 1px 1px $primary;
+  box-shadow: 0px 0px 1px 2px $primary;
 
 img.mask
   border-radius: 0px !important
 
 div.selected
-  color: $secondary
+  color: $font-secondary-dark
+  font-weight: bold
 
 button.primary
   background-color: $primary!important
+
+button.primary:active
+  background-color: $primary !important
 
 .card-footer
   background: $secondary!important
@@ -434,5 +467,17 @@ section
 
 p.white-text
   font-size: 20px
-  margin-bottom: 40px
+  margin-bottom: 40px !important
+
+.logo
+  height: 40px
+
+.navbar-brand
+  padding: 0 !important
+
+h5
+  padding-top: 5px
+
+nav a
+  color: white
 </style>
