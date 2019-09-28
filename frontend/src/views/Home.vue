@@ -1,6 +1,6 @@
 <template>
   <div class="home">
-    <mdb-navbar color="indigo" dark>
+    <mdb-navbar dark>
       <mdb-navbar-brand href>BBS</mdb-navbar-brand>
       <mdb-navbar-toggler>
         <mdb-navbar-nav>
@@ -40,25 +40,34 @@
           </div>
           <div class="input-wrapper">
             <label for="Image">Choose your Activity</label>
-            <br />
-            <img
-              :src="'./natur0.jpg'"
-              alt="avatar"
-              class="img-fluid"
-              :class="{selected: isNature}"
-              @click="isNature = true"
-            />
-            or
-            <img
-              :src="'./stadt0.jpg'"
-              alt="avatar"
-              class="img-fluid"
-              :class="{selected: !isNature}"
-              @click="isNature = false"
-            />
+            <div class="image-selection__wrapper">
+              <div>
+                <img
+                  :src="'./natur0.jpg'"
+                  alt="avatar"
+                  class="img-fluid"
+                  :class="{selected: isNature}"
+                  @click="isNature = true"
+                />
+                <div for="Image" :class="{selected: isNature}">Nature</div>
+              </div>
+              <h3>or</h3>
+              <div>
+                <img
+                  :src="'./stadt0.jpg'"
+                  alt="avatar"
+                  class="img-fluid"
+                  :class="{selected: !isNature}"
+                  @click="isNature = false"
+                />
+                <div for="Image" :class="{selected: !isNature}">City</div>
+              </div>
+            </div>
           </div>
         </div>
-        <mdb-btn @click="getTrips">Let's go</mdb-btn>
+        <div style="textAlign: center">
+          <mdb-btn @click="getTrips" class="primary">Let's go</mdb-btn>
+        </div>
       </form>
     </section>
     <!-- SEARCH OFFER -->
@@ -70,7 +79,10 @@
               <mdb-card>
                 <mdb-view hover>
                   <a href="#!">
-                    <mdb-card-image :src="'./'+ selectedCategory+'0.jpg'" alt="Card image cap"></mdb-card-image>
+                    <mdb-card-image
+                      :src="'./'+ (isNature ? 'natur' : 'stadt') +'0.jpg'"
+                      alt="Card image cap"
+                    ></mdb-card-image>
                     <mdb-mask flex-center waves overlay="white-slight"></mdb-mask>
                   </a>
                 </mdb-view>
@@ -82,9 +94,9 @@
                     <span class="new-price">19</span>
                     <span>CHF</span>
                   </p>
-                  <mdb-btn color="primary" @click="book">Book</mdb-btn>
+                  <mdb-btn class="primary" @click="book">Book</mdb-btn>
                 </mdb-card-body>
-                <mdb-card-footer color="mdb-color" class="lighten-3 p-0 text-center">
+                <mdb-card-footer class="lighten-3 p-0 text-center">
                   <ul class="list-unstyled list-inline font-small mt-3">
                     <li class="list-inline-item pr-2 white-text">
                       <mdb-icon far icon="clock" class="pr-1" />
@@ -112,6 +124,9 @@
           </mdb-row>
         </mdb-container>
       </div>
+    </section>
+    <section v-if="views.isSuccess">
+      <img :src="'./success.png'" class="img-fluid" />
     </section>
 
     <!-- <mdb-btn @click="getLocationByName(startLocation)">Get Location by name (Bern)</mdb-btn>
@@ -170,7 +185,7 @@ export default {
         isSearchLocation: true,
         isSearchTrip: false
       },
-      isNature: null
+      isNature: true
     };
   },
   computed: {
@@ -178,7 +193,8 @@ export default {
       get() {
         return {
           isSearchLocation: this.viewFlags.isSearchLocation,
-          isSearchTrip: this.viewFlags.isSearchTrip
+          isSearchTrip: this.viewFlags.isSearchTrip,
+          isSuccess: this.viewFlags.isSuccess
         };
       },
       set(newView) {
@@ -253,12 +269,17 @@ export default {
       this.views = {
         ...this.views,
         isSearchLocation: false,
-        isSearchTrip: true
+        isSearchTrip: true,
+        isSuccess: false
       };
       console.log(response.data);
     },
     book() {
       console.log("booked");
+      this.views = {
+        isSearchTrip: false,
+        isSuccess: true
+      };
     },
     // async getToken() {
     //   const url =
@@ -330,11 +351,23 @@ export default {
 };
 </script>
 <style lang="sass">
+$primary: #eb0000
+$secondary: #666
+$secondary-light: #f6f6f6
+$font-secondary: #767676
+
+nav
+  background: $primary
+
 form 
+  text-align: left
   padding: 15px
+  color: $font-secondary
+  background: $secondary-light
+  border-radius: 2px
+
 
 .vdp-datepicker 
-  border-bottom: 1px solid
   input 
     width: 100%
 
@@ -349,15 +382,40 @@ form
   color: #b8b8b8
 .new-price
   margin: 0 16px
-  color: #e64142
+  color: $primary
   font-size: 50px
   line-height: 50px
   font-weight: 700
 
 .input-wrapper img
-  max-width: 40%
-  max-height: 70px
+  // max-width: 40%
+  // max-height: 70px
+
+.image-selection__wrapper
+  width: 100%
+  text-align: center
+  display:grid
+  grid-template-columns: 1fr auto 1fr 
+
+  h3
+    padding: 8px
   
+img
+  border-radius: 2px
+
 img.selected
-  outline: solid 2px red
+  outline: solid 2px $primary
+
+div.selected
+  color: $secondary
+
+button.primary
+  background-color: $primary!important
+
+.card-footer
+  background: $secondary!important
+  color: $font-secondary!important
+
+section
+  padding: 8px
 </style>
