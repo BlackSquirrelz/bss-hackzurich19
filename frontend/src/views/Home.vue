@@ -8,6 +8,7 @@
         </mdb-navbar-nav>
       </mdb-navbar-toggler>
     </mdb-navbar>
+    <!-- SEARCH FORM -->
     <section v-if="views.isSearchLocation">
       <form @submit.prevent>
         <div class="grey-text">
@@ -37,34 +38,49 @@
               v-model="selectedTime"
             />
           </div>
+          <div class="input-wrapper">
+            <label for="Image">Choose your Activity</label>
+            <br />
+            <img
+              :src="'./natur0.jpg'"
+              alt="avatar"
+              class="img-fluid"
+              :class="{selected: isNature}"
+              @click="isNature = true"
+            />
+            or
+            <img
+              :src="'./stadt0.jpg'"
+              alt="avatar"
+              class="img-fluid"
+              :class="{selected: !isNature}"
+              @click="isNature = false"
+            />
+          </div>
         </div>
         <mdb-btn @click="getTrips">Let's go</mdb-btn>
       </form>
     </section>
+    <!-- SEARCH OFFER -->
     <section v-if="views.isSearchTrip">
       <div class="trip-wrapper">
-        <mdb-container v-for="(trip,index) in trips">
+        <mdb-container>
           <mdb-row>
             <mdb-col sm="4">
               <mdb-card>
                 <mdb-view hover>
                   <a href="#!">
-                    <mdb-card-image
-                      :src="'./'+ selectedCategory + (index % 2)+'.png'"
-                      alt="Card image cap"
-                    ></mdb-card-image>
+                    <mdb-card-image :src="'./'+ selectedCategory+'0.jpg'" alt="Card image cap"></mdb-card-image>
                     <mdb-mask flex-center waves overlay="white-slight"></mdb-mask>
                   </a>
                 </mdb-view>
                 <mdb-card-body>
-                  <mdb-card-title>Card title</mdb-card-title>
+                  <mdb-card-title>Your suprise trip</mdb-card-title>
                   <hr />
                   <p class="font-small grey-dark-text mb-0">
-                    <div class="contextual-deals-card__content-wrapper__dealpricing">
-                      <span class="old-price">39</span>
-                      <span class="new-price">19</span>
-                      <span>CHF</span>
-                    </div>
+                    <span class="old-price">39</span>
+                    <span class="new-price">19</span>
+                    <span>CHF</span>
                   </p>
                   <mdb-btn color="primary" @click="book">Book</mdb-btn>
                 </mdb-card-body>
@@ -98,12 +114,12 @@
       </div>
     </section>
 
-    <mdb-btn @click="getLocationByName(startLocation)">Get Location by name (Bern)</mdb-btn>
+    <!-- <mdb-btn @click="getLocationByName(startLocation)">Get Location by name (Bern)</mdb-btn>
     <mdb-btn @click="getTrips">Get Trip (Bern-Montreux) Time given</mdb-btn>
-    <!-- <mdb-btn @click="getToken">Get Token</mdb-btn> -->
+    <mdb-btn @click="getToken">Get Token</mdb-btn> 
     <mdb-btn @click="getPrice">Get Price</mdb-btn>
     <mdb-btn @click="getOffer">Get Offer</mdb-btn>
-    <mdb-btn @click="prebook">Prebook</mdb-btn>
+    <mdb-btn @click="prebook">Prebook</mdb-btn>-->
   </div>
 </template>
 
@@ -150,11 +166,11 @@ export default {
       destinationId: "",
       selectedDate: this.formatDate(new Date()),
       selectedTime: "17:00",
-      selectedCategory: "natur",
       viewFlags: {
         isSearchLocation: true,
         isSearchTrip: false
-      }
+      },
+      isNature: null
     };
   },
   computed: {
@@ -315,7 +331,6 @@ export default {
 </script>
 <style lang="sass">
 form 
-  border: 1px solid #e0e0e0
   padding: 15px
 
 .vdp-datepicker 
@@ -338,4 +353,11 @@ form
   font-size: 50px
   line-height: 50px
   font-weight: 700
+
+.input-wrapper img
+  max-width: 40%
+  max-height: 70px
+  
+img.selected
+  outline: solid 2px red
 </style>
