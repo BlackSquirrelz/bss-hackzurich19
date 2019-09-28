@@ -1,6 +1,6 @@
 <template>
   <div class="home">
-    <HelloWorld />
+    <!-- <HelloWorld /> -->
     <mdb-btn @click="getLocationByName(startLocation)">Get Location by name (Bern)</mdb-btn>
     <mdb-btn @click="getLocationByName(targetLocation)">Get Location by name (Montreux)</mdb-btn>
     <mdb-btn @click="getTrips">Get Trip (Bern-Montreux) Time given</mdb-btn>
