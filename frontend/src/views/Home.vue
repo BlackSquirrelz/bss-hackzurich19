@@ -9,11 +9,18 @@
       </mdb-navbar-toggler>
     </mdb-navbar>
     <!-- SEARCH FORM -->
+    <mdb-view>
+      <img :src="'./flag.jpg'" class="img-fluid" alt="placeholder" />
+      <mdb-mask flex-center text="Your next Adventure is ready" />
+    </mdb-view>
     <section v-if="views.isSearchLocation">
+      <h1 class="text-left">Exciting</h1>
+      <h2 class="text-center">Mysterious</h2>
+      <h3 class="text-right">Experience</h3>
       <form @submit.prevent>
         <div class="grey-text">
           <div class="form-group">
-            <label for="example1">Origin</label>
+            <label for="example1">Where would you like to start?</label>
             <input
               type="text"
               id="example1"
@@ -23,12 +30,12 @@
             />
           </div>
           <div class="input-wrapper">
-            <label for="date">Start date</label>
+            <label for="date">What date do you like</label>
             <Datepicker v-model="selectedDate" class="form-control" format="yyyy-MM-dd" />
           </div>
 
           <div class="input-wrapper">
-            <label for="time">Time</label>
+            <label for="time">Consider your starting time</label>
             <input
               type="time"
               id="appt"
@@ -39,7 +46,7 @@
             />
           </div>
           <div class="input-wrapper">
-            <label for="Image">Choose your Activity</label>
+            <label for="Image">Do you prefer...</label>
             <div class="image-selection__wrapper">
               <div>
                 <img
@@ -49,9 +56,9 @@
                   :class="{selected: isNature}"
                   @click="isNature = true"
                 />
-                <div for="Image" :class="{selected: isNature}">Nature</div>
+                <div for="Image" :class="{selected: isNature}">...calming Nature</div>
               </div>
-              <h3>or</h3>
+              <h3>...or...</h3>
               <div>
                 <img
                   :src="'./stadt0.jpg'"
@@ -60,7 +67,7 @@
                   :class="{selected: !isNature}"
                   @click="isNature = false"
                 />
-                <div for="Image" :class="{selected: !isNature}">City</div>
+                <div for="Image" :class="{selected: !isNature}">...exciting Cities</div>
               </div>
             </div>
           </div>
@@ -358,6 +365,7 @@ $font-secondary: #767676
 
 nav
   background: $primary
+  box-shadow: 0 3px 5px rgba(57, 63, 72, 0.3);
 
 form 
   text-align: left
@@ -400,11 +408,16 @@ form
   h3
     padding: 8px
   
-img
-  border-radius: 2px
+form img
+  border-radius: 5px
 
 img.selected
-  outline: solid 2px $primary
+  // border: solid 2px $primary
+  // border-radius: 5px
+  box-shadow: 0px 0px 1px 1px $primary;
+
+img.mask
+  border-radius: 0px !important
 
 div.selected
   color: $secondary
@@ -418,4 +431,8 @@ button.primary
 
 section
   padding: 8px
+
+p.white-text
+  font-size: 20px
+  margin-bottom: 40px
 </style>
