@@ -28,53 +28,18 @@ Going on an andventure with the client
 We created an adventure for a selected destination in this proof of concept, based on retro-style text based adventures the client is guided from the point of departure to the destination. Twilio enabled us to send puzzles about the location directly to the phone in a serverless form. 
 
 ```
-{
-	"actions": [
-		{
-			"collect": {
-				"name": "riddle_questions",
-				"questions": [
-					{
-						"question": "Now that you have found your seat and we are departing, it is time to let you know where we are going. In this place, one of the most famous composers of the 1900th century has lived and even married",
-						"name": "composer",
-						"type": "adventure.COMPOSER",
-						"validate": {
-							"allowed_values": {
-								"list": [
-									"Richard Wagner",
-									"Wagner Richard",
-									"R. Wagner",
-									"Wagner"
-								]
-							},
-							"on_failure": {
-								"messages": [
-									{
-										"say": "Not quite, have another guess."
-									},
-									{
-										"say": "Siegfried is by this composer"
-									}
-								],
-								"repeat_question": true
-							},
-							"on_success": {
-								"say": "Correct"
-							},
-							"max_attempts": {
-								"redirect": "task://having-trouble",
-								"num_attempts": 3
-							}
-						}
-					}
-				],
-				"on_complete": {
-					"redirect": "https://moccasin-fish-9988.twil.io/riddle-1"
-				}
-			}
-		}
-	]
-}
+"question": "Now that you have found your seat and we are departing, it is time to let you know where we are going. In this place, one of the most famous composers of the 1900th century has lived and even married",
+"name": "composer",
+"type": "adventure.COMPOSER",
+"validate": {
+	"allowed_values": {
+		"list": [
+			"Richard Wagner",
+			"Wagner Richard",
+			"R. Wagner",
+			"Wagner"
+		]
+	},							
 ```
 
 ## Deployment
