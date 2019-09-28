@@ -1,12 +1,6 @@
-# bss-hackzurich19
+# Surprise Breathtaking Buddy
 HackZurich2019 Repo
 This is the GitHub repository for the BBS - Team on HackZurich2019
-
-#TEAM
-- 
--
--
-
 
 #Challenge:
 No. 15 - SBB Surprise Travel
@@ -32,4 +26,85 @@ Calling the SBB API with these parameters gave a list of possible locations, fro
 
 Going on an andventure with the client
 We created an adventure for a selected destination in this proof of concept, based on retro-style text based adventures the client is guided from the point of departure to the destination. Twilio enabled us to send puzzles about the location directly to the phone in a serverless form. 
+
+```
+{
+	"actions": [
+		{
+			"collect": {
+				"name": "riddle_questions",
+				"questions": [
+					{
+						"question": "Now that you have found your seat and we are departing, it is time to let you know where we are going. In this place, one of the most famous composers of the 1900th century has lived and even married",
+						"name": "composer",
+						"type": "adventure.COMPOSER",
+						"validate": {
+							"allowed_values": {
+								"list": [
+									"Richard Wagner",
+									"Wagner Richard",
+									"R. Wagner",
+									"Wagner"
+								]
+							},
+							"on_failure": {
+								"messages": [
+									{
+										"say": "Not quite, have another guess."
+									},
+									{
+										"say": "Siegfried is by this composer"
+									}
+								],
+								"repeat_question": true
+							},
+							"on_success": {
+								"say": "Correct"
+							},
+							"max_attempts": {
+								"redirect": "task://having-trouble",
+								"num_attempts": 3
+							}
+						}
+					}
+				],
+				"on_complete": {
+					"redirect": "https://moccasin-fish-9988.twil.io/riddle-1"
+				}
+			}
+		}
+	]
+}
+```
+
+## Deployment
+
+Our application was deployed on netlify (https://www.netlify.com/)
+
+## Created With
+
+* [Vue.js](https://vuejs.org/) - The web framework used
+* [Twillio](https://www.twilio.com/) - Chat integration
+
+## Authors
+
+* Peter Buchmann
+* Tobias Weisskopf
+*  
+
+## License
+
+This project is licensed under the MIT License - see the [LICENSE.md](LICENSE.md) file for details
+
+## Acknowledgments
+
+The following sites were used as inspiration for the application:
+
+https://www.getyourguide.de/s/?q=Berne&customerSearch=1&searchSource=2&p=1
+https://app.ophigo.com/
+https://www.tiktok.com/en/
+https://space10-community.github.io/conversational-form/landingpage/
+https://www.sbb.ch/de/freizeit-ferien/freizeitangebote/tagesausfluege.html
+
+
 
