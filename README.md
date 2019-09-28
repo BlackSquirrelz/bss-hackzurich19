@@ -2,12 +2,12 @@
 HackZurich2019 Repo
 This is the GitHub repository for the BBS - Team on HackZurich2019
 
-#Challenge:
+##Challenge:
 No. 15 - SBB Surprise Travel
 
 The challenge was to create a surprise travel app for the Swiss Railways SBB in order to bring get more people using the railway instead of the car for leisure travel. The main idea was to shift travelers from peek hours also have the highest ticket prices, to times with less occupancy and lower fares. 
 
-#Solution:
+##Solution:
 
 Our application combines the surprising journey in to the unknown and takes it to the next level by presenting the user with a text based adventure. 
 
@@ -17,7 +17,7 @@ As we realise that even in today's day and age, not everyone possesses a smartph
 
 The social angle a train journey was also an important aspect for us while developing the application. Our goal was it to be able to connect people embarking on the Surprise Journey by offering them an possibility to share trips and meet at designated locations in the train. 
 
-Technial implementation
+##Technial implementation
 
 Find and book the journey. 
 
