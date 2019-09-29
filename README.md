@@ -30,11 +30,13 @@ The service is offered through a mobile website built in vue.js . All the user n
 
 ![Alt text](Documentation/Booking.png "Booking")
 
+
 ### Embarking on an adventure with the client 
 
 From start  to finish we engage the user in a conversation reminiscent of text based adventure-games. With the help of a chat-bot we guide the client through an exciting experience.
 Our service makes heavy use of the messaging service Twilio to send puzzles and information about the destination to his phone as simple texts with occasional images.
 This is an example of an interaction.
+
 
 ```
 "question": "This city is located at a lake. In a Swiss legend the region surrounding the lake is associated with a fruit. Do you kow where we are going?",
@@ -47,6 +49,7 @@ This is an example of an interaction.
 	},
 
 ```
+
 
 ![Alt text](Documentation/riddle2.png "Riddle")
 
@@ -67,7 +70,7 @@ Our application was deployed on netlify (https://www.netlify.com/)
 
 ## License
 
-This project is licensed under the MIT License - see the [LICENSE.md](LICENSE.md) file for details
+This project is licensed under the MIT License.
 
 ## Acknowledgments
 
