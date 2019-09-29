@@ -2,46 +2,53 @@
 HackZurich2019 Repo
 This is the GitHub repository for the BBS - Team on HackZurich2019
 
+
+![Alt text](Documentation/tell.gif "Tell")
+(Source: https://dribbble.com/shots/4368786-Migrojis-Sticker-Wilhelm-Tell )
+
 ## Challenge
 
 No. 15 - SBB Surprise Travel
 
-The challenge was to create a surprise travel app for the Swiss Railways SBB in order to bring get more people using the railway instead of the car for leisure travel. The main idea was to shift travelers from peek hours also have the highest ticket prices, to times with less occupancy and lower fares. 
+The challenge was to create a surprise travel app for Swiss Railways SBB in order to get more people to use the train instead of the car for leisure travel. The main idea is to shift travelers from peak hours with high ticket prices, to times with less occupancy and lower fares.
 
 ## Proposed Solution
 
-Our application combines the surprising journey in to the unknown and takes it to the next level by presenting the user with a text based adventure. 
+Our application combines  the idea of a surprise journey into the unknown with a text based adventure game and is thus taking the experience  to another level.
 
-SBB - Surprise Journey guides the client from the initial point of sale to the destination of travel. The customer is presented with puzzles about the destination and kept guessing where the journey will take them until they are already on the rails. 
+Our take on the SBB - Surprise Journey guides the client on every step from the initial point of sale to the final destination. Even after boarding the train we leave the customer in the uk known about the place she is going to spend the rest of the day. Instead we present her with puzzles about the destination. In this way the customer gets to know new and interesting facts about the destination.
 
-As we realise that even in today's day and age, not everyone possesses a smartphone we tailored the service to work even on a SMS basis alongside dedicated chat services. 
+As we are fully aware that even in this day and age not everyone owns a smartphone, we provide an interactive experience that works on all networks, even with SMS..
+We think that the social aspect of a train journey is an important one and holds great potential for improving the experience. We want to connect like minded people who embark on a  Surprise Journey by offering them the  possibility to meet during the train ride at specific places on the train such as the dining car.
 
-The social angle a train journey was also an important aspect for us while developing the application. Our goal was it to be able to connect people embarking on the Surprise Journey by offering them an possibility to share trips and meet at designated locations in the train. 
 
 ## Technical Implementation
 
-Find and book the journey. 
+### Find and book the journey.
 
-Offering the service to the potential customers is done via a mobile optimized website build in vue.js . The users only need to enter the departure location, the desired departure time and the preference for either a hiking trip or a city-visit.
-Calling the SBB API with these parameters gave a list of possible locations, from which the cheapest one was selected. The user is at this point presented with the option to like and share the suggestion and book it, or disregard the offers and try another time. 
+The service is offered through a mobile website built in vue.js . All the user needs to enter are the departure location, the desired departure time and the preference for either a hiking trip or a city-visit. Based on these parameters the SBB API generates a list of locations, from which we select the cheapest offeringy. It is then up to the user to make a choice.
 
-Going on an andventure with the client
-We created an adventure for a selected destination in this proof of concept, based on retro-style text based adventures the client is guided from the point of departure to the destination. Twilio enabled us to send puzzles about the location directly to the phone in a serverless form. 
+![Alt text](Documentation/Booking.png "Booking")
+
+### Embarking on an adventure with the client 
+
+From start  to finish we engage the user in a conversation reminiscent of text based adventure-games. With the help of a chat-bot we guide the client through an exciting experience.
+Our service makes heavy use of the messaging service Twilio to send puzzles and information about the destination to his phone as simple texts with occasional images.
+This is an example of an interaction.
 
 ```
-"question": "Now that you have found your seat and we are departing, it is time to let you know where we are going. In this place, one of the most famous composers of the 1900th century has lived and even married",
-"name": "composer",
-"type": "adventure.COMPOSER",
+"question": "This city is located at a lake. In a Swiss legend the region surrounding the lake is associated with a fruit. Do you kow where we are going?",
+"type": "adventure.FRUIT",
 "validate": {
 	"allowed_values": {
 		"list": [
-			"Richard Wagner",
-			"Wagner Richard",
-			"R. Wagner",
-			"Wagner"
+			"Apple"
 		]
-	},							
+	},
+
 ```
+
+![Alt text](Documentation/riddle2.png "Riddle")
 
 ## Deployment
 
@@ -71,6 +78,3 @@ https://app.ophigo.com/
 https://www.tiktok.com/en/
 https://space10-community.github.io/conversational-form/landingpage/
 https://www.sbb.ch/de/freizeit-ferien/freizeitangebote/tagesausfluege.html
-
-
-
