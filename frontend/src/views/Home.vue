@@ -19,13 +19,13 @@
     </mdb-view>
     <section v-if="views.isSearchLocation">
       <h1 class="text-left">
-        <span class="red-text">S</span>uprising
+        <span class="red-text">S</span>urprising
       </h1>
       <h2 class="text-center">
         <span class="red-text">B</span>reathtaking
       </h2>
       <h3 class="text-right">
-        <span class="red-text">B</span>orderless
+        <span class="red-text">B</span>uddy
       </h3>
       <form @submit.prevent>
         <div>
